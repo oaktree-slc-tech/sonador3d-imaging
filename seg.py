@@ -9,7 +9,7 @@ from client.utils.general import first
 from sonador.imaging.orthanc.base import ImagingSeries
 from sonador.imaging.orthanc.seg import ImageSegmentData
 
-from ..apisettings import IMAGING_VOLUME_TYPE_NUMPY, IMAGING_VOLUME_TYPE_ITK
+from .apisettings import IMAGING_VOLUME_TYPE_NUMPY, IMAGING_VOLUME_TYPE_ITK
 
 logger = logging.getLogger(__name__)
 

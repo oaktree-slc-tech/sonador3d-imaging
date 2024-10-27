@@ -14,3 +14,7 @@ NUETRAL_3D_POSE = np.array([
 LABELMAP_DTYPE_DEFAULT = np.uint8
 
 IDENTIY_3D = np.identity(3)
+
+
+IMAGING_VOLUME_TYPE_NUMPY = 'numpy'
+IMAGING_VOLUME_TYPE_ITK = 'itk'
