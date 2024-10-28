@@ -3,6 +3,8 @@ import SimpleITK as sitk
 
 from sonador.imaging.orthanc.base import ImageCoord
 
+from .apisettings import DCM_VOLUME_LEFT_POSTERIOR_SUPERIOR
+
 
 def imagevolume_center(img: sitk.Image):
 	'''	return the physical center point of the provided image
