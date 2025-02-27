@@ -39,6 +39,40 @@ class SonadorImagingVolume(object):
 		# Labelmap options
 		self._labelmap_opts = kwargs.get('labelmap_opts', {})
 
+	def __reduce__(self, *args, **kwargs):
+		_pickle = super().__reduce__(*args, **kwargs)
+		_state = _pickle[2]
+
+		# Convert volume to state dictionary
+		_vol = _state.pop('_volume', None)
+		if _vol:
+			_state['_volume'] = {
+				'array' : sitk.GetArrayFromImage(_vol),
+				'direction' : _vol.GetDirection(),
+				'origin' : _vol.GetOrigin(),
+				'spacing' : _vol.GetSpacing()
+			}
+
+		# Remove reader as Swig objects are not supported by the pickle interface
+		_reader = _state.pop('_reader', None)
+
+		return _pickle
+	
+	def __setstate__(self, state):
+		_vol = state.pop('_volume', None)
+		if _vol:
+
+			# Initialize SimpleItk image from state dictionary
+			_vol_img = sitk.GetImageFromArray(_vol['array'])
+			_vol_img.SetDirection(_vol['direction'])
+			_vol_img.SetOrigin(_vol['origin'])
+			_vol_img.SetSpacing(_vol['spacing'])
+
+			# Add SimpleItk image to state dictionary
+			state['_volume'] = _vol_img
+		
+		self.__dict__.update(state)
+
 	def fectch_volume(self, *args, **kwargs):
 		'''	Retrieve the voxel data associated with the image and return a point cloud
 
