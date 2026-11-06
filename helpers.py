@@ -463,7 +463,7 @@ def display_volume_series_number(size, base=DISPLAY_VOLUME_SERIES_NUMBER_BASE):
 def display_volume_series_description(source_description, size, template=DISPLAY_VOLUME_SERIES_DESCRIPTION_TEMPLATE,
 		default=DISPLAY_VOLUME_SERIES_DESCRIPTION_DEFAULT):
 	'''	Default description of a display series: the description of the source followed by the size label
-		("PELVIS _FEM Display 512"), `default` when the source has no description
+		("PELVIS _FEM (Display 512)"), `default` when the source has no description
 	'''
 	label = display_volume_size_label(size)
 	description = str(source_description or '').strip()
@@ -970,7 +970,7 @@ def dcm_encode_display_volume(ivolume, size=None, spacing=None, grid=None, displ
 		the first instance of the source series; the Type 2 headers of the CT Image module that the source
 		lacks (`required_headers`: AcquisitionNumber, KVP) are written empty. The series receives a new
 		SeriesInstanceUID, a SeriesNumber (`display_volume_series_number`, 1000 + voxel count) and
-		SeriesDescription (source description + "Display N"). Each slice carries its ImagePositionPatient,
+		SeriesDescription (source description + " (Display N)"). Each slice carries its ImagePositionPatient,
 		ImageOrientationPatient, PixelSpacing, SliceThickness, SpacingBetweenSlices and SliceLocation
 		computed from the grid; ImageType DERIVED\\SECONDARY\\AXIAL\\RESAMPLED; DerivationDescription and
 		DerivationCodeSequence (spatial resampling); the lossy compression history of the source extended

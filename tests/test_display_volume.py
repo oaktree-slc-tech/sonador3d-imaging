@@ -443,7 +443,7 @@ def test_derivation_description_records_both_extents(ct, ivolume):
 def test_display_volumes_one_series_per_size(ivolume):
 	hcache = H.dcm_encode_display_volumes(ivolume, sizes=(4, 3), dry_run=True)
 	descriptions = sorted(v.description for k, v in hcache.items() if k.resource == IMAGING_SERVER_RESOURCE_SERIES)
-	assert descriptions == ['PELVIS Display 3', 'PELVIS Display 4']
+	assert descriptions == ['PELVIS (Display 3)', 'PELVIS (Display 4)']
 	for bad in (dict(size=4), dict(spacing=2.0), dict(series_uid='1.2')):
 		with pytest.raises(ValueError):
 			H.dcm_encode_display_volumes(ivolume, sizes=(4,), dry_run=True, **bad)

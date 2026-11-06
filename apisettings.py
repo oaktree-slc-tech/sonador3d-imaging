@@ -90,9 +90,10 @@ DISPLAY_VOLUME_SIZES = (512, 256, 171)
 DISPLAY_VOLUME_SERIES_NUMBER_BASE = 1000
 
 # Series description templates: `description` is the description of the source series, `size` the
-# voxel count label ("512" for a cube, "512x512x300" otherwise)
-DISPLAY_VOLUME_SERIES_DESCRIPTION_TEMPLATE = '%(description)s Display %(size)s'
-DISPLAY_VOLUME_SERIES_DESCRIPTION_DEFAULT = 'Display Volume %(size)s'
+# voxel count label ("512" for a cube, "512x512x300" otherwise). The display label and the size are
+# placed in parentheses after the source description ("PELVIS _FEM (Display 512)").
+DISPLAY_VOLUME_SERIES_DESCRIPTION_TEMPLATE = '%(description)s (Display %(size)s)'
+DISPLAY_VOLUME_SERIES_DESCRIPTION_DEFAULT = 'Display Volume (%(size)s)'
 
 # Image Type of a display slice (PS3.3 C.7.6.1.1.2): derived, secondary, axial, resampled copy
 DCM_IMAGE_TYPE_DISPLAY_VOLUME = ['DERIVED', 'SECONDARY', 'AXIAL', 'RESAMPLED']
